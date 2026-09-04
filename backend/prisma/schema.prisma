@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Institution {
+  id           String   @id @default(cuid())
+  name         String
+  contactName  String?
+  contactPhone String?
+  createdAt    DateTime @default(now())
+
+  participants Participant[]
+}
+
+model Participant {
+  id                  String    @id @default(cuid())
+  name                String
+  registrationNo      String    @unique
+  gender              String
+  mobile              String
+  email               String
+  foodPreference      String
+  bloodGroup          String
+  arrivalAt           DateTime?
+  departureAt         DateTime?
+  emergencyContact    String
+  accommodationHall   String?
+  accommodationRoom   String?
+  accommodationBed    String?
+  iitkgpContactPerson String?
+  createdAt           DateTime  @default(now())
+
+  institutionId String
+  institution   Institution @relation(fields: [institutionId], references: [id])
+
+  registrationEvents RegistrationEvent[]
+}
+
+model Sport {
+  id         String @id @default(cuid())
+  name       String @unique
+  formatType String
+
+  disciplines Discipline[]
+}
+
+model Discipline {
+  id      String @id @default(cuid())
+  name    String
+  sportId String
+  sport   Sport  @relation(fields: [sportId], references: [id])
+
+  registrationEvents RegistrationEvent[]
+
+  @@unique([sportId, name])
+}
+
+model RegistrationEvent {
+  id             String      @id @default(cuid())
+  participantId  String
+  participant    Participant @relation(fields: [participantId], references: [id])
+  disciplineId   String
+  discipline     Discipline  @relation(fields: [disciplineId], references: [id])
+  weightCategory String?
+}
