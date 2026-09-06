@@ -41,9 +41,10 @@ model Participant {
 }
 
 model Sport {
-  id         String @id @default(cuid())
-  name       String @unique
-  formatType String
+  id             String @id @default(cuid())
+  name           String @unique
+  formatType     String
+  maxDisciplines Int    @default(1)
 
   disciplines Discipline[]
 }
