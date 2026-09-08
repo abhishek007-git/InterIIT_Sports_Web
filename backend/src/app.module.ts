@@ -5,9 +5,11 @@ import { PrismaModule } from './prisma/prisma.module.js';
 import { SportsModule } from './sports/sports.module.js';
 import { InstitutionsModule } from './institutions/institutions.module.js';
 import { ParticipantsModule } from './participants/participants.module.js';
+import { VenuesModule } from './venues/venues.module.js';
+import { FixturesModule } from './fixtures/fixtures.module.js';
 
 @Module({
-  imports: [PrismaModule, SportsModule, InstitutionsModule, ParticipantsModule],
+  imports: [PrismaModule, SportsModule, InstitutionsModule, ParticipantsModule, VenuesModule, FixturesModule],
   controllers: [AppController],
   providers: [AppService],
 })

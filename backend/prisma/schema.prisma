@@ -56,6 +56,7 @@ model Discipline {
   sport   Sport  @relation(fields: [sportId], references: [id])
 
   registrationEvents RegistrationEvent[]
+  fixtures           Fixture[]
 
   @@unique([sportId, name])
 }
@@ -67,4 +68,24 @@ model RegistrationEvent {
   disciplineId   String
   discipline     Discipline  @relation(fields: [disciplineId], references: [id])
   weightCategory String?
+}
+
+model Venue {
+  id       String @id @default(cuid())
+  name     String @unique
+  capacity Int?
+
+  fixtures Fixture[]
+}
+
+model Fixture {
+  id           String     @id @default(cuid())
+  disciplineId String
+  discipline   Discipline @relation(fields: [disciplineId], references: [id])
+  venueId      String
+  venue        Venue      @relation(fields: [venueId], references: [id])
+  scheduledAt  DateTime
+  stage        String
+  status       String     @default("scheduled")
+  createdAt    DateTime   @default(now())
 }

@@ -24,6 +24,9 @@ export default async function Home() {
   return (
     <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
       <h1>Sports Meet Platform</h1>
+      <nav style={{ marginBottom: '1.5rem' }}>
+        <a href="/schedule">View Schedule →</a>
+      </nav>
       <h2>Register a Participant</h2>
       <RegistrationForm sports={sports} institutions={institutions} />
     </main>
