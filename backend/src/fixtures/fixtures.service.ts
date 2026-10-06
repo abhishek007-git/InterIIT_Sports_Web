@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
-import { CreateFixtureDto } from './dto/create-fixtures.dto.js';
+import { CreateFixtureDto } from './dto/create-fixture.dto.';
 
 @Injectable()
 export class FixturesService {
@@ -8,7 +8,7 @@ export class FixturesService {
 
   findAll() {
     return this.prisma.fixture.findMany({
-      include: { discipline: { include: { sport: true } }, venue: true },
+      include: { discipline: { include: { sport: true } }, venue: true, confirmedResult: true },
       orderBy: { scheduledAt: 'asc' },
     });
   }

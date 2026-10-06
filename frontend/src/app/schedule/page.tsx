@@ -5,6 +5,7 @@ type Fixture = {
   status: string;
   discipline: { name: string; sport: { name: string } };
   venue: { name: string };
+  confirmedResult: { value: string } | null;
 };
 
 async function getFixtures(): Promise<Fixture[]> {
@@ -58,6 +59,7 @@ export default async function SchedulePage() {
                   <td>{f.discipline.name}</td>
                   <td>{f.stage}</td>
                   <td>{f.venue.name}</td>
+                  <td>{f.confirmedResult ? f.confirmedResult.value : '—'}</td>
                 </tr>
               ))}
             </tbody>

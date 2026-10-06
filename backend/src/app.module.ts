@@ -7,9 +7,20 @@ import { InstitutionsModule } from './institutions/institutions.module.js';
 import { ParticipantsModule } from './participants/participants.module.js';
 import { VenuesModule } from './venues/venues.module.js';
 import { FixturesModule } from './fixtures/fixtures.module.js';
+import { RawEntriesModule } from './raw-entries/raw-entries.module.js';
+import { ConfirmedResultsModule } from './confirmed-results/confirmed-results.module.js';
 
 @Module({
-  imports: [PrismaModule, SportsModule, InstitutionsModule, ParticipantsModule, VenuesModule, FixturesModule],
+  imports: [
+    PrismaModule,
+    SportsModule,
+    InstitutionsModule,
+    ParticipantsModule,
+    VenuesModule,
+    FixturesModule,
+    RawEntriesModule,
+    ConfirmedResultsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

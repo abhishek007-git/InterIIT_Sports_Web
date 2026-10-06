@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Institution {
@@ -88,4 +89,27 @@ model Fixture {
   stage        String
   status       String     @default("scheduled")
   createdAt    DateTime   @default(now())
+
+  rawEntries      RawEntry[]
+  confirmedResult ConfirmedResult?
+}
+
+model RawEntry {
+  id        String   @id @default(cuid())
+  fixtureId String
+  fixture   Fixture  @relation(fields: [fixtureId], references: [id])
+  enteredBy String
+  value     String
+  notes     String?
+  createdAt DateTime @default(now())
+}
+
+model ConfirmedResult {
+  id          String   @id @default(cuid())
+  fixtureId   String   @unique
+  fixture     Fixture  @relation(fields: [fixtureId], references: [id])
+  confirmedBy String
+  value       String
+  notes       String?
+  confirmedAt DateTime @default(now())
 }
