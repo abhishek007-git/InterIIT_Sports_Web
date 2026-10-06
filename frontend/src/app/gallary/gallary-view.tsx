@@ -40,8 +40,7 @@ function PhotoCard({ photo, onTagged }: { photo: MediaAsset; onTagged: () => voi
 
   return (
     <div style={{ border: '1px solid #ccc', borderRadius: 8, overflow: 'hidden' }}>
-      <img src={`http://localhost:3001/uploads/${photo.filename}`} alt="Event photo" style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block' }} />
-      <div style={{ padding: '0.75rem' }}>
+        <img src={photo.filename} alt="Event photo" style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block' }} />      <div style={{ padding: '0.75rem' }}>
         <p style={{ fontSize: '0.85rem', color: '#666', margin: 0 }}>{photo.sport ? photo.sport.name : 'General'}</p>
         {photo.photoTags.length > 0 && (
           <p style={{ fontSize: '0.85rem', margin: '0.25rem 0' }}>Tagged: {photo.photoTags.map((t) => t.participant.name).join(', ')}</p>
