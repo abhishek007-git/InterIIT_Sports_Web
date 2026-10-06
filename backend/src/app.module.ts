@@ -9,6 +9,7 @@ import { VenuesModule } from './venues/venues.module.js';
 import { FixturesModule } from './fixtures/fixtures.module.js';
 import { RawEntriesModule } from './raw-entries/raw-entries.module.js';
 import { ConfirmedResultsModule } from './confirmed-results/confirmed-results.module.js';
+import { StandingsModule } from './standings/standings.module.js';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ConfirmedResultsModule } from './confirmed-results/confirmed-results.mo
     FixturesModule,
     RawEntriesModule,
     ConfirmedResultsModule,
+    StandingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -24,10 +24,12 @@ export default async function Home() {
   return (
     <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
       <h1>Sports Meet Platform</h1>
-      <nav style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem' }}>
+      <nav style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
         <a href="/schedule">Schedule</a>
         <a href="/scoring">Submit a Reading</a>
         <a href="/confirm">Confirm Results</a>
+        <a href="/standings/record">Record Standings</a>
+        <a href="/standings">Standings</a>
       </nav>
       <h2>Register a Participant</h2>
       <RegistrationForm sports={sports} institutions={institutions} />

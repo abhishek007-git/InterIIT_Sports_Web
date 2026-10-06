@@ -4,7 +4,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model Institution {
@@ -14,7 +13,8 @@ model Institution {
   contactPhone String?
   createdAt    DateTime @default(now())
 
-  participants Participant[]
+  participants     Participant[]
+  fixtureStandings FixtureStanding[]
 }
 
 model Participant {
@@ -39,6 +39,7 @@ model Participant {
   institution   Institution @relation(fields: [institutionId], references: [id])
 
   registrationEvents RegistrationEvent[]
+  fixtureStandings   FixtureStanding[]
 }
 
 model Sport {
@@ -90,8 +91,9 @@ model Fixture {
   status       String     @default("scheduled")
   createdAt    DateTime   @default(now())
 
-  rawEntries      RawEntry[]
-  confirmedResult ConfirmedResult?
+  rawEntries       RawEntry[]
+  confirmedResult  ConfirmedResult?
+  fixtureStandings FixtureStanding[]
 }
 
 model RawEntry {
@@ -112,4 +114,16 @@ model ConfirmedResult {
   value       String
   notes       String?
   confirmedAt DateTime @default(now())
+}
+
+model FixtureStanding {
+  id            String       @id @default(cuid())
+  fixtureId     String
+  fixture       Fixture      @relation(fields: [fixtureId], references: [id])
+  institutionId String
+  institution   Institution  @relation(fields: [institutionId], references: [id])
+  participantId String?
+  participant   Participant? @relation(fields: [participantId], references: [id])
+  rank          Int
+  points        Int          @default(0)
 }
