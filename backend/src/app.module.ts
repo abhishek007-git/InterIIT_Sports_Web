@@ -13,12 +13,13 @@ import { StandingsModule } from './standings/standings.module.js';
 import { PdfModule } from './pdf/pdf.module.js';
 import { CertificatesModule } from './certificates/certificates.module.js';
 import { ReportsModule } from './reports/reports.module.js';
+import { MediaModule } from './media/media.module.js';
 
 @Module({
   imports: [
     PrismaModule, SportsModule, InstitutionsModule, ParticipantsModule, VenuesModule,
     FixturesModule, RawEntriesModule, ConfirmedResultsModule, StandingsModule,
-    PdfModule, CertificatesModule, ReportsModule,
+    PdfModule, CertificatesModule, ReportsModule, MediaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

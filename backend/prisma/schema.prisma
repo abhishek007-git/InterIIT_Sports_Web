@@ -40,6 +40,7 @@ model Participant {
 
   registrationEvents RegistrationEvent[]
   fixtureStandings   FixtureStanding[]
+  photoTags          PhotoTag[]
 }
 
 model Sport {
@@ -49,6 +50,7 @@ model Sport {
   maxDisciplines Int    @default(1)
 
   disciplines Discipline[]
+  mediaAssets MediaAsset[]
 }
 
 model Discipline {
@@ -126,4 +128,24 @@ model FixtureStanding {
   participant   Participant? @relation(fields: [participantId], references: [id])
   rank          Int
   points        Int          @default(0)
+}
+
+model MediaAsset {
+  id         String   @id @default(cuid())
+  filename   String
+  uploadedBy String
+  sportId    String?
+  sport      Sport?   @relation(fields: [sportId], references: [id])
+  createdAt  DateTime @default(now())
+
+  photoTags PhotoTag[]
+}
+
+model PhotoTag {
+  id            String      @id @default(cuid())
+  mediaAssetId  String
+  mediaAsset    MediaAsset  @relation(fields: [mediaAssetId], references: [id])
+  participantId String
+  participant   Participant @relation(fields: [participantId], references: [id])
+  createdAt     DateTime    @default(now())
 }
