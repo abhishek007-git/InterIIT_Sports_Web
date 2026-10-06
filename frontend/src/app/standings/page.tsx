@@ -61,11 +61,16 @@ export default async function StandingsPage() {
       <h2>Overall</h2>
       <StandingsTable standings={overall} />
       {sports.map((sport, i) => (
-        <div key={sport.id}>
-          <h2>{sport.name}</h2>
-          <StandingsTable standings={perSport[i]} />
+  <div key={sport.id}>
+    <h2>
+      {sport.name}{' '}
+            <a href={`http://localhost:3001/reports/sport/${sport.id}`} target="_blank" rel="noreferrer" style={{ fontSize: '0.9rem', marginLeft: '1rem' }}>
+        Download Report (PDF)
+            </a>
+        </h2>
+         <StandingsTable standings={perSport[i]} />
         </div>
-      ))}
+     ))}
     </main>
   );
 }

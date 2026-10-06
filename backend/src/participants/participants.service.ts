@@ -12,6 +12,15 @@ export class ParticipantsService {
     });
   }
 
+  findByRegistrationNo(registrationNo: string) {
+    return this.prisma.participant.findUnique({
+      where: { registrationNo },
+      include: {
+        fixtureStandings: { include: { fixture: { include: { discipline: { include: { sport: true } } } } } },
+      },
+    });
+  }
+
   async create(dto: CreateParticipantDto) {
     const sport = await this.prisma.sport.findUnique({
       where: { id: dto.sportId },

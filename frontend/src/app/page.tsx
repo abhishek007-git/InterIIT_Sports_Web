@@ -30,6 +30,7 @@ export default async function Home() {
         <a href="/confirm">Confirm Results</a>
         <a href="/standings/record">Record Standings</a>
         <a href="/standings">Standings</a>
+        <a href="/certificate">My Certificate</a>
       </nav>
       <h2>Register a Participant</h2>
       <RegistrationForm sports={sports} institutions={institutions} />
