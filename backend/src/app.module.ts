@@ -14,9 +14,11 @@ import { PdfModule } from './pdf/pdf.module.js';
 import { CertificatesModule } from './certificates/certificates.module.js';
 import { ReportsModule } from './reports/reports.module.js';
 import { MediaModule } from './media/media.module.js';
+import { AuthModule } from './auth/auth.module.js';
 
 @Module({
   imports: [
+    AuthModule,
     PrismaModule, SportsModule, InstitutionsModule, ParticipantsModule, VenuesModule,
     FixturesModule, RawEntriesModule, ConfirmedResultsModule, StandingsModule,
     PdfModule, CertificatesModule, ReportsModule, MediaModule,

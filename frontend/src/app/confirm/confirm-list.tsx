@@ -1,5 +1,5 @@
 'use client';
-
+import { getAuthHeaders } from '@/lib/auth';
 import { useState } from 'react';
 
 type RawEntry = { id: string; enteredBy: string; value: string; notes: string | null; createdAt: string };
@@ -27,7 +27,7 @@ function ConfirmRow({ fixture }: { fixture: PendingFixture }) {
     try {
       const res = await fetch('http://localhost:3001/confirmed-results', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
         body: JSON.stringify({ fixtureId: fixture.id, confirmedBy, value, notes: notes || undefined }),
       });
       if (!res.ok) {

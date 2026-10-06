@@ -1,4 +1,5 @@
 import RegistrationForm from './registration-form';
+import AuthStatus from './auth-status';
 
 async function getSports() {
   try {
@@ -24,14 +25,15 @@ export default async function Home() {
   return (
     <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
       <h1>Sports Meet Platform</h1>
-      <nav style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+      <nav style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
         <a href="/schedule">Schedule</a>
         <a href="/scoring">Submit a Reading</a>
         <a href="/confirm">Confirm Results</a>
         <a href="/standings/record">Record Standings</a>
         <a href="/standings">Standings</a>
-        <a href="/certificate">My Certificate</a>
         <a href="/gallery">Gallery</a>
+        <a href="/certificate">My Certificate</a>
+        <AuthStatus />
       </nav>
       <h2>Register a Participant</h2>
       <RegistrationForm sports={sports} institutions={institutions} />

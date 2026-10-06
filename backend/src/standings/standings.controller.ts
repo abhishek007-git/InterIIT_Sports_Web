@@ -1,6 +1,9 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { StandingsService } from './standings.service.js';
 import { RecordStandingDto } from './dto/record-standing.dto.js';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard.js';
+import { RolesGuard } from '../auth/roles.guard.js';
+import { Roles } from '../auth/roles.decorator.js';
 
 @Controller('standings')
 export class StandingsController {
@@ -12,6 +15,8 @@ export class StandingsController {
   }
 
   @Post()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('head_organizer', 'super_admin')
   recordStanding(@Body() dto: RecordStandingDto) {
     return this.standingsService.recordStanding(dto);
   }

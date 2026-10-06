@@ -1,5 +1,5 @@
 'use client';
-
+import { getAuthHeaders } from '@/lib/auth';
 import { useEffect, useState } from 'react';
 
 type Fixture = { id: string; stage: string; discipline: { name: string; sport: { name: string } } };
@@ -43,7 +43,7 @@ export default function RecordStandingsForm({ fixtures }: { fixtures: Fixture[] 
         const entry = entries[candidate.id];
         const res = await fetch('http://localhost:3001/standings', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
           body: JSON.stringify({
             fixtureId,
             institutionId: candidate.institution.id,
