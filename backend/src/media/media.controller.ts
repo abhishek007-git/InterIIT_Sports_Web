@@ -5,6 +5,13 @@ import * as streamifier from 'streamifier';
 import { MediaService } from './media.service.js';
 import { TagPhotoDto } from './dto/tag-photo.dto.js';
 
+type UploadedMediaFile = {
+  buffer: Buffer;
+  originalname?: string;
+  mimetype?: string;
+  size?: number;
+};
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -17,7 +24,7 @@ export class MediaController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async upload(@UploadedFile() file: Express.Multer.File, @Body() body: { sportId?: string; uploadedBy: string }) {
+  async upload(@UploadedFile() file: UploadedMediaFile, @Body() body: { sportId?: string; uploadedBy: string }) {
     if (!file) {
       throw new BadRequestException('No file uploaded');
     }

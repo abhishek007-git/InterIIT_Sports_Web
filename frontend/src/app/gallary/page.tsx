@@ -1,4 +1,4 @@
-import GalleryView from './gallery-view';
+import GalleryView from './gallary-view';
 
 type Sport = { id: string; name: string };
 

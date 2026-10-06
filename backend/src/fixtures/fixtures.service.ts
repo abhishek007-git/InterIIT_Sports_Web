@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
-import { CreateFixtureDto } from './dto/create-fixture.dto.';
+import { CreateFixtureDto } from './dto/create-fixtures.dto.js';
 
 @Injectable()
 export class FixturesService {

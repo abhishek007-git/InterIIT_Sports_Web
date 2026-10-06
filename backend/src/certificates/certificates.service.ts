@@ -37,11 +37,14 @@ export class CertificatesService {
   }
 
   private buildHtml(standing: {
-    participant: { name: string };
-    institution: { name: string };
+    participant: { name: string } | null;
+    institution: { name: string } | null;
     rank: number;
     fixture: { discipline: { name: string; sport: { name: string } } };
   }): string {
+    const participantName = standing.participant?.name ?? 'Unknown participant';
+    const institutionName = standing.institution?.name ?? 'Unknown institution';
+
     return `
 <!DOCTYPE html>
 <html>
@@ -61,8 +64,8 @@ export class CertificatesService {
     <h1>Certificate of Achievement</h1>
     <p class="subtitle">Sports Meet Platform</p>
     <p class="detail">This certifies that</p>
-    <p class="name">${standing.participant.name}</p>
-    <p class="detail">representing ${standing.institution.name}</p>
+    <p class="name">${participantName}</p>
+    <p class="detail">representing ${institutionName}</p>
     <p class="detail">has achieved</p>
     <p class="rank">${ordinal(standing.rank)} Place</p>
     <p class="detail">in ${standing.fixture.discipline.name} (${standing.fixture.discipline.sport.name})</p>
